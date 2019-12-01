@@ -183,7 +183,7 @@ function loadContactsFromServer() {
         }
     };
 
-    xmlhttp.open("GET","{{ url_for('static', filname='load-contacts.py') }}", true);
+    xmlhttp.open("GET","{{ url_for('static', filname='load-contacts.php') }}", true);
     xmlhttp.send();
 }
 
