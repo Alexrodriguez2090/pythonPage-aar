@@ -1,0 +1,19 @@
+h1 {
+	text-align:center;
+}
+body {
+	background-color:grey;
+	margin:20px;
+}
+h3 {
+	color:blue;
+}
+#textboxes {
+	position:relative;
+	width:260px;
+	text-align:right;
+}
+#buttonboxes {
+	position:relative;
+	left:6%;
+}

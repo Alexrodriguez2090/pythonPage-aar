@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--
+    Author:      Alejandro Rodriguez
+    Class:       Web and Distributed Programming 
+    Project:     Mustang v3
+    Description: Third version of the contact logger. 
+-->
+<head>
+	<title>JSON Contacts</title>
+	<meta charset="utf-8"/>
+	<script src="{{ url_for('static', filename='contactparsing.js') }}"></script>
+	<script src="{{ url_for('static', filename='auto-complete.js') }}"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='contactparsing.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='auto-complete.css') }}">
+</head>
+<body onload="getIndex()">
+
+	<h1>Contact logger v3</h1>
+	<hr /><br />
+	<div>
+		<button onclick="initialLoad()">Initial Load (Looks for web contacts and overwrites them to server)</button>
+		<br /><br />
+		<button onclick="nextContact()">Load contacts from web</button>
+		<button onclick="loadContactsFromServer()">Load contacts from Server</button>
+		<button onclick="saveContactsToServer()">Overwrite all on memory to Server</button>
+		<!--Obsolote <button onclick="check()">Show contacts</button>-->
+		<br /><br />
+		<button onclick="appendToServer()">Append contact to Server</button>
+		<button onclick="deleteFromServer()">Delete contact from Server</button>
+		<button onclick="updateToServer()">Update contact to Server</button>
+		<br /> <br />
+		<div id="numberOfContacts">Load contacts from web or from server to start.</div>
+	</div>
+	<br /><br />
+
+	<div id="textboxes">
+		Name: <input id="nameID" type="text" value="" size="20"><br />
+		Email: <input id="emailID" type="text" value="" size="20"><br />
+		First name: <input id="fnameID" type="text" value="" size="20"><br />
+		Last name: <input id="lnameID" type="text" value="" size="20"><br />
+		Phone #: <input id="phoneID" type="text" value="" size="20"><br />
+		Zip: <input id="zipID" type="text" value="" size="20" onblur="zipAutofill()"><br />
+		City: <input id="cityID" type="text" value="" size="20"><br />
+		State: <input id="stateID" type="text" value="" size="20"><br />
+	</div><br />
+
+	<div id="buttonboxes">
+		<button onclick="previous()"><-Previous</button>
+		<button onclick="next()">Next-></button>
+		<br /><br />
+		<button onclick="newContact()">New</button>
+		<button onclick="delContact()">Delete</button>
+		<button onclick="updateContact()">Update</button>
+	</div>
+	<br /> <br />
+	<div id="contactsID">Contacts will be shown here.</div>
+
+	<script>
+		var ac1 = new autoComplete({
+   		selector: '#stateID',
+    	minChars: 1,
+    	source: function(term, suggest){
+        	term = term.toLowerCase();
+        	var choices = ["AK", "AL", "AR", "AS", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", 
+				"MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"];
+        	var matches = [];
+        	for (i=0; i<choices.length; i++)
+            	if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+        	suggest(matches);
+    	}
+	});
+
+		var ac2 = new autoComplete({
+   		selector: '#cityID',
+    	minChars: 1,
+    	source: function(term, suggest){
+        	term = term.toLowerCase();
+        	var choices = ["New York City", "Minooka", "Elk Grove Village", "Bolingbrook", "Chicago", "Romeoville"];
+        	var matches = [];
+        	for (i=0; i<choices.length; i++)
+            	if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+        	suggest(matches);
+    	}
+	});
+	</script>
+
+</body>
+</html>

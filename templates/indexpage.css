@@ -1,0 +1,13 @@
+body {
+	font-family:Arial;
+	background-color:#5F6366;
+}
+h1 {
+	text-align:center;
+	color:#86B3D1;
+}
+.listdiv {
+	width:200px;
+	margin:0 auto;
+	font-size:40px;
+}
