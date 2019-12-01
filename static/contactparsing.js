@@ -22,6 +22,26 @@ function nextContact() {
 		showContact()
 	}
 	document.getElementById("numberOfContacts").innerHTML = "There are " + contactProgress + " contacts to log, press 'Show contacts' above.";
+    
+    fetch(`${window.origin}/getData`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(contactsSquared),
+        cache: "no-cache",
+        headers: new Headers({
+            "Content-type": "application/json"
+        })
+    })
+    .then(function (response) {
+        if (response.status !== 200) {
+            console.log(`Not 200`);
+            return;
+        }
+
+        response.json().then(function(data) {
+            console.log(data)
+        })
+    })
 }
 
 function contactMarker() {
@@ -183,11 +203,12 @@ function loadContactsFromServer() {
         }
     };
 
-    xmlhttp.open("GET","{{ url_for('static', filename='load-contacts.py') }}", true);
+    xmlhttp.open("GET","getData", true);
     xmlhttp.send();
 }
 
 function saveContactsToServer() {
+
     console.log("Saving to server");
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
@@ -195,9 +216,9 @@ function saveContactsToServer() {
             console.log('Response: ' + this.responseText);
         }
     };
-    xmlhttp.open("POST", '{{ url_for("static", filename="save-contacts.php") }}', true);
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("contacts=" + JSON.stringify(contactsSquared));
+    xmlhttp.open("POST", 'postData', true);
+    xmlhttp.setRequestHeader("Content-type", "application/json");
+    xmlhttp.send(JSON.stringify(contactsSquared));
 }
 
 function appendToServer() {
