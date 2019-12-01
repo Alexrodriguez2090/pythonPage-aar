@@ -75,7 +75,7 @@ function initialLoad() {
 function zipAutofill() {
 	zipPlace = []
     var zipFind = new XMLHttpRequest();
-    zipFind.open("GET", "getCityState.php?zip=" + document.getElementById("zipID").value);
+    zipFind.open("GET","{{ urlfor('static', filename='getCityState.php?zip= + document.getElementById("zipID").value') }}";
     zipFind.onreadystatechange = function() {
     	if (zipFind.readyState == 4 && zipFind.status == 200) {
     		var response = zipFind.responseText;
