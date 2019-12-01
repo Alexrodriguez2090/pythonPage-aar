@@ -75,7 +75,7 @@ function initialLoad() {
 function zipAutofill() {
 	zipPlace = []
     var zipFind = new XMLHttpRequest();
-    zipFind.open("GET","{{ urlfor('static', filename='getCityState.php?zip= + document.getElementById("zipID").value') }}";
+    zipFind.open("GET", "{{ url_for('static', filename='getCityState.php?zip=') }}" + document.getElementById("zipID").value);
     zipFind.onreadystatechange = function() {
     	if (zipFind.readyState == 4 && zipFind.status == 200) {
     		var response = zipFind.responseText;
@@ -183,7 +183,7 @@ function loadContactsFromServer() {
         }
     };
 
-    xmlhttp.open("GET","{{ url_for('static', filname='load-contacts.py') }}", true);
+    xmlhttp.open("GET","{{ url_for('static', filename='load-contacts.py') }}", true);
     xmlhttp.send();
 }
 
@@ -195,7 +195,7 @@ function saveContactsToServer() {
             console.log('Response: ' + this.responseText);
         }
     };
-    xmlhttp.open("POST", '{{ url_for("static", filname="save-contacts.php") }}', true);
+    xmlhttp.open("POST", '{{ url_for("static", filename="save-contacts.php") }}', true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("contacts=" + JSON.stringify(contactsSquared));
 }
