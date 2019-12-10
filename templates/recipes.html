@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% set count = -1 %}
+
+{% block recipebook %}
+	{% for recipe in recipebook %}
+		<h1>{{ recipe.name }} <form method="POST"><button id="delete" class="delete" name="delete" value="{{ loop.index - 1 }}">Del</button></form></h1> 
+			<form method="POST"><button id="update" class="update" name="update" value="{{ loop.index - 1 }}">Update</button></form>
+		<p>{{ recipe.ingr }}</p>
+		<p>{{ recipe.instr }}</p>
+	{% endfor %}
+{% endblock %}

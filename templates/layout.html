@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ type }} Recipes</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='recipes.css') }}">
+</head>
+<body>
+	 <div class="topnav">
+		<a class="active" href="{{url_for('recipes') }}">Home</a>
+		<a href="vads">Meat recipes</a>
+		<a href="adwd">Soup recipes</a>
+		<a href="ferfrf">Vegetarian recipes</a>
+	</div>
+
+	<div id="recipes">
+		{% block recipebook %}
+		{% endblock %}
+	</div>
+
+</body>
+</html>
