@@ -41,7 +41,7 @@ def recipes():
 	recipes = json.load(open(data))
 
 	if request.method == "POST":
-		if "delete" in request.form:
+		if 'delete' in request.form:
 			root = os.path.realpath(os.path.dirname(__file__))
 			data = os.path.join(root, 'data', 'meatrecipes.json')
 
@@ -61,10 +61,9 @@ def recipes():
 			entryname = entry['name']
 			entryinstr = entry['instr']
 			entryingr = entry['ingr']
-			done = 0
 			#with open(data, 'w') as f:
 				#json.dump(olddata, f)
-			return updatePage(entryname, entryinstr, entryingr, entrynumber, done)
+			return updatePage(entryname, entryinstr, entryingr, entrynumber)
 		elif 'name' in request.form:
 			root = os.path.realpath(os.path.dirname(__file__))
 			data = os.path.join(root, 'data', 'meatrecipes.json')
@@ -79,9 +78,9 @@ def recipes():
 			newname = request.form['name']
 			newingr = request.form['ingr']
 			newinstr = request.form['instr']
-			entryname = newname
-		#entryinstr = entry['instr']
-		#entryingr = entry['ingr']
+			entry['name'] = request.form['name']
+			entry['ingr'] = request.form['ingr']
+			entry['instr'] = request.form['instr']
 			with open(data, 'w') as f:
 				json.dump(olddata, f)
 			return redirect(url_for('recipes'))
@@ -90,29 +89,8 @@ def recipes():
 		return render_template("recipes.html", recipebook=recipes, type="Home")
 
 @app.route('/updateentry', methods=["GET", "POST"])
-def updatePage(entryname, entryinstr, entryingr, entrynumber, done):
-	print(entryname, file=sys.stderr)
-	if request.method == "POST" and done == 1:
-		root = os.path.realpath(os.path.dirname(__file__))
-		data = os.path.join(root, 'data', 'meatrecipes.json')
-
-		olddata = json.load(open(data))
-		entry = olddata[entrynumber]
-		entryname = entry['name']
-		entryinstr = entry['instr']
-		entryingr = entry['ingr']
-
-		newname = request.form['name']
-		newingr = request.form['ingr']
-		newinstr = request.form['instr']
-		entryname = newname
-	#entryinstr = entry['instr']
-	#entryingr = entry['ingr']
-		with open(data, 'w') as f:
-			json.dump(olddata, f)
-		return redirect(url_for('recipes'))
-	else:
-		return render_template("updatepage.html", entryname=entryname, entryingr=entryingr, entryinstr=entryinstr, entrynumber=entrynumber)
+def updatePage(entryname, entryinstr, entryingr, entrynumber):
+	return render_template("updatepage.html", entryname=entryname, entryingr=entryingr, entryinstr=entryinstr, entrynumber=entrynumber)
 
 #Debug
 if __name__ == '__main__':
