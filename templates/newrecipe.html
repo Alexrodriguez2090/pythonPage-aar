@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block recipebook %}
+	<form method="POST">
+
+		<select name="recipeType">
+			<option selected disabled>Choose one</option>
+			<option value="meat">Meat recipe</option>
+			<option value="soup">Soup recipe</option>
+			<option value="vegetarian">Vegetarian recipe</option>
+		</select>
+
+		<input type="text" name="name" placeholder="Recipe name"><br />
+		<input type="text" name="ingr" placeholder="Ingredients"><br />
+		<input type="text" name="instr" placeholder="Instructions">
+		<input type="submit">
+	</form>
+{% endblock %}

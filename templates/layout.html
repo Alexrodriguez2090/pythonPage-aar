@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{ type }} Recipes</title>
+	<title>Recipes - {{ type }}</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='recipes.css') }}">
 </head>
 <body>
 	 <div class="topnav">
-		<a class="active" href="{{url_for('recipes') }}">Home</a>
-		<a href="vads">Meat recipes</a>
-		<a href="adwd">Soup recipes</a>
-		<a href="ferfrf">Vegetarian recipes</a>
+		<a href="{{ url_for('recipebookIndex') }}">Home</a>
+		<a href="{{ url_for('recipes') }}">Meat recipes</a>
+		<a href="{{ url_for('soupRecipes') }}">Soup recipes</a>
+		<a href="{{ url_for('vegetarianRecipes') }}">Vegetarian recipes</a>
+		<a class="new" href="{{ url_for('newRecipe') }}">New Recipe</a>
 	</div>
 
 	<div id="recipes">

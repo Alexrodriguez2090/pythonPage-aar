@@ -1,5 +1,5 @@
 body {
-	background-color:#a32a2a;
+	background-color:#0b3948;
 	margin:0;
 }
 div {
@@ -8,10 +8,14 @@ div {
 }
 
 .topnav {
-	background-color: #333;
+	background-color: #416165;
 	overflow: hidden;
   	margin:0;
   	padding:0;
+}
+
+.topnav a.new {
+	background-color:#51ab60;
 }
 
 .topnav a {
@@ -19,21 +23,42 @@ div {
 	color: #f2f2f2;
 	text-align: center;
 	margin:0;
-	padding:16px;
+	padding:15px;
 	text-decoration: none;
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #ddddd9;
   color: black;
 }
 
-.topnav a.active {
-  background-color: #4CAF50;
-  color:grey;
+#recipebox {
+	background-color:#9eb3c2;
+	margin:0 auto;
+	width:50%;
+	border:2px solid black;
+	border-radius: 20px;
+	margin-bottom:15px;
+	padding: 5px 10px;
 }
 
 #recipes {
 	margin:5px;
+}
+
+#update {
+	position:absolute;
+	left:68.5%;
+	border-radius: 5px;
+	background-color:#2b59c3;
+	border:1px solid black;
+}
+
+#delete {
+	position:absolute;
+	left:72%;
+	border-radius: 5px;
+	background-color:#a30b37;
+	border:1px solid black;
 }
