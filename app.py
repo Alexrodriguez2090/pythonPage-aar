@@ -38,7 +38,7 @@ def postData():
 #Recipe websites
 @app.route('/recipebookIndex')
 def recipebookIndex():
-	return render_template('recipebookindex.html')
+	return render_template('recipebookindex.html', type="Home")
 
 @app.route('/recipes', methods=["GET", "POST"])
 def recipes():
@@ -234,7 +234,7 @@ def newRecipe():
 				json.dump(olddata, f)
 			return redirect(url_for('vegetarianRecipes'))
 	else:
-		return render_template("newrecipe.html")
+		return render_template("newrecipe.html", type="Create")
 
 #Debug
 if __name__ == '__main__':
